@@ -3,7 +3,17 @@
 import sys
 
 def making_change(amount, denominations):
-  pass 
+  cache = {}
+  if amount < 0:
+    return 0
+  elif amount == 0:
+    return 1
+    
+  if cache[amount]:
+    return cache[amount]
+  else:
+    for denomination in denominations:
+      cache[amount] += making_change(amount - denomination)
 
 
 if __name__ == "__main__":

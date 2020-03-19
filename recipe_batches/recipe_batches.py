@@ -3,7 +3,20 @@
 import math
 
 def recipe_batches(recipe, ingredients):
-  pass 
+  maxBatch = None
+  for key in recipe:
+    if ingredients.setdefault(key, 0) > 0:
+      currentBatch = ingredients[key]// recipe[key] 
+      if maxBatch is None:
+        maxBatch = currentBatch
+      elif currentBatch < maxBatch:
+        maxBatch = currentBatch
+    else:
+      return 0
+
+  return maxBatch 
+
+print(recipe_batches({ 'milk': 100, 'flour': 4, 'sugar': 10, 'butter': 5 }, { 'milk': 1288, 'flour': 9, 'sugar': 95 }))
 
 
 if __name__ == '__main__':
