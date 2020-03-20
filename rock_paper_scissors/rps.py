@@ -1,24 +1,19 @@
 #!/usr/bin/python
 
 import sys
-def addCombo(arr, n):
-  plays = ['rock', 'paper', 'scissors'] 
-  if n > 0:
-    for play in plays:
-      newArr = []
-      newArr = [play] + addCombo(newArr, n-1)
-      arr = arr + newArr
-  return arr
-
-print(addCombo([],2))
-
 def rock_paper_scissors(n):
-  plays = ['rock', 'paper', 'scissors']
-  arr = []
-  for play in plays:
-    arr = arr + addCombo([play], n-1)
-  
-  return arr
+  options = ['rock', 'paper', 'scissors']
+  combos = []
+
+  def addCombo(playedSoFar, rounds):
+    if rounds < 1:
+      combos.append(playedSoFar)
+    else:
+      for i in range(len(options)):
+        addCombo(playedSoFar + [options[i]], rounds - 1)
+    
+  addCombo([],n)
+  return combos
 
 if __name__ == "__main__":
   if len(sys.argv) > 1:
